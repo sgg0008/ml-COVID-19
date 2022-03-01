@@ -2,14 +2,14 @@
 
 Modelos de clasificación en cuadernos jupyter a presentar en el TFG:
 
-##1. Comparación con el trabajo original
+1. Comparación con el trabajo original
 
-Modelo de clasificación que mejora los resultados del trabajo original.
+  Modelo de clasificación que mejora los resultados del trabajo original.
 
-### Selección de atributos
+2. Selección de atributos
 
-Selección de atributos
+  Selección de atributos.
 
-### Atributos mínimos
+3. Atributos mínimos
 
-Modelo de clasificación minimizando los atributos a utilizar.
+  Modelo de clasificación minimizando los atributos a utilizar.
