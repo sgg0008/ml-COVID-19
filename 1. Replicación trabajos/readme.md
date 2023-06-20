@@ -1,3 +1,3 @@
-# Replica del trabajo relacionado en python
+# Replica del trabajo "Innate and Adaptive Immune Assessment at Admission to Predict Clinical Outcome in COVID-19 Patients" en python
 
-Se realizan dos cuadernos jupyter utilizando en ambos regresión logística, utilizando en uno de ellos imputación de datos y pipelines.
+Se realiza un cuaderno jupyter haciendo una clasificación con regresión logística utilizando imputación de datos y pipelines.
