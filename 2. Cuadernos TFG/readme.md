@@ -2,8 +2,8 @@
 
 Modelos de clasificación en cuadernos jupyter a presentar en el TFG:
 
-1. Mejorar con el modelo de clasificación presentado en Innate and Adaptive Immune Assessment at Admission to
-Predict Clinical Outcome in COVID-19 Patients
+1. Mejorar con el modelo de clasificación presentado en [Innate and Adaptive Immune Assessment at Admission to
+Predict Clinical Outcome in COVID-19 Patients](https://pubmed.ncbi.nlm.nih.gov/34440121/)
   - Replicación del modelo de Regresión Logística evaluado con ROC AUC
   - Optimización búsqueda clasificador óptimo con [Autosklearn](https://automl.github.io/auto-sklearn/master/)
     - Selección atributos, imputación, normalización, técnicas de desequilibrado, ajuste de parámetros
