@@ -13,8 +13,6 @@ Predict Clinical Outcome in COVID-19 Patients](https://pubmed.ncbi.nlm.nih.gov/3
     - Selección atributos, imputación, normalización, técnicas de desequilibrado, ajuste de parámetros  
   - Optimización de parámetros del clasificador con [Optuna](https://optuna.org/)
   - Explicación de atributos con más influencia en el modelo con [Shap](https://github.com/slundberg/shap) 
-  
-3. Despliegue de los modelos en función de las medidas Recuperación vs. Precisión
 
 
 
