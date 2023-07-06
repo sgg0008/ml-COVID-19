@@ -1,0 +1,169 @@
+\apendice{Especificación de Requisitos}
+
+\section{Introducción}
+
+En este apartado se exponen los principales requisitos del proyecto.
+
+\section{Objetivos generales}
+
+Estos son los objetivos que se marcaron en el proyecto:
+
+\begin{itemize}
+    \item Replicar el trabajo \textit{Innate and Adaptive Immune Assessment at Admission to Predict Clinical Outcome in COVID-19 Patients}~\cite{sansegundo:2021}.
+    \item Buscar trabajos relacionados y clasificar las variables, técnicas y herramientas que se utilizaron.
+	\item Estudiar los datos proporcionados por el Instituto de Investigación Sanitaria de Valdecilla (IDIVAL) y considerar como procesarlos para poder obtener un un modelo de predicción que mejore los rendimientos del trabajo \textit{Innate and Adaptive Immune Assessment at Admission to Predict Clinical Outcome in COVID-19 Patients}~\cite{sansegundo:2021}.
+    \item Utilizar librerías de aprendizaje automático que ayuden a encontrar el mejor método de clasificación de entre diferentes métodos a partir de las variables/marcadores para el Covid-19 y disponibles en el conjunto de datos.
+    \item Minimizar las características a utilizar para su utilización en el modelo a desarrollar.
+    \item Investigar qué hiperparámetros pueden mejorar el método de clasificación elegido para el modelo final.
+\end{itemize}
+
+\section{Catálogo de requisitos}
+
+Debido al carácter fundamentalmente experimental de nuestro proyecto, distinguiremos en requisitos funcionales (qué realizan los modelos desarrollados) y no funcionales (cómo lo consigue).
+
+\subsection{Requisitos funcionales}
+\begin{itemize}
+
+    \item \textbf{RF-1} Los datos deben poder ser divididos en conjuntos de entrenamiento y validación.
+        \begin{itemize}
+            \item \textbf{RF-1.1} Se indicará qué porcentaje de datos del total se utilizará en el conjunto de validación.
+            \item \textbf{RF-1.2} Aleatorización de la inclusión de instancias en el conjunto de entrenamiento o validación, permitiendo siempre una división paritaria en ambos conjuntos.        
+        \end{itemize}
+    
+    \item \textbf{RF-2} Se debe poder aplicar técnicas y algoritmos de preparación de los datos.
+        \begin{itemize}
+            \item \textbf{RF-2.1} Se debe poder eliminar los valores nulos de la característica a entrenar.
+            \item \textbf{RF-2.2} Se debe poder imputar los valores perdidos o nulos en el resto del conjunto de datos
+        \end{itemize}
+    
+    \item \textbf{RF-3} Se debe poder entrenar un modelo.
+        \begin{itemize}
+            \item \textbf{RF-3.1} Ofrecer la posibilidad de escoger entre diferentes algoritmos de clasificación.
+            \item \textbf{RF-3.2} Debe guardarse el mejor modelo generado durante el entrenamiento.
+            \item \textbf{RF-3.3} Se debe poder mostrar gráficamente los resultados del entrenamiento.
+        \end{itemize}
+
+    \item \textbf{RF-4} Se debe poder realizar búsquedas de mejor clasificador de forma automática.
+        \begin{itemize}
+            \item \textbf{RF-4.1} Se debe poder cambiar el dataset a utilizar.
+            \item \textbf{RF-4.2} Se debe poder cambiar los parámetros de búsqueda.
+            \item \textbf{RF-4.3} Se debe obtener una solución gráfica en la que observar los resultados.
+        \end{itemize}
+
+    \item \textbf{RF-5} Se debe poder optimizar los hiperparámetros de un modelo.
+        \begin{itemize}
+            \item \textbf{RF-5.1} Se debe poder cambiar el modelo a optimizar.
+            \item \textbf{RF-5.2} Se debe obtener un gráfico con los resultados.
+        \end{itemize}
+
+    \item \textbf{RF-6} Se debe poder probar un modelo guardado.
+        \begin{itemize}
+            \item \textbf{RF-6.1} Se debe poder encontrar el modelo a cargar.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Requisitos no funcionales}
+
+\begin{itemize}
+    \item \textbf{RNF-1} Portabilidad: Se puede ejecutar entre diferentes sistemas operativos y entornos de desarrollo, lo que evita problemas de configuración y compatibilidad.
+    \item \textbf{RNF-2} Reproducibilidad: El contenedor contiene todas las dependencias y configuraciones específicas, lo que facilita la reproducción de resultados y la colaboración.
+    \item \textbf{RNF-2} Aislamiento: Los paquetes o bibliotecas instalados en el contenedor no afectarán a tu sistema host, y viceversa.
+    \item \textbf{RNF-2} Escalabilidad: Permite manejar grandes conjuntos de datos y ejecutar cálculos intensivos de manera eficiente utilizando recursos distribuidos.
+    \item \textbf{RNF-2} Administración simplificada: Gestión de múltiples Jupyter Notebooks y entornos. Se pueen crear y administrar diferentes contenedores para proyectos específicos o diferentes configuraciones de entorno.
+    \item \textbf{RNF-2} Flexibilidad: Permite personalizar y configurar el entorno para instalar las bibliotecas y herramientas necesarias, configurar extensiones y temas, y ajustar los recursos del contenedor para optimizar el rendimiento.
+\end{itemize}
+\newpage
+
+\section{Especificación de requisitos}
+
+\subsection{Diagrama de caso de uso}
+
+\imagen{diaguso}{Diagrama de caso de uso}
+
+\subsection{Especificaciones de los casos de uso}
+
+\tablaSinCabeceraConBandas{Caso de Uso \textit{División de datos en conjuntos de entrenamiento y validación}}{p{3cm} p{9cm}}{2}{casouso1}
+{Caso de uso & División de datos en entrenamiento y validación \\ 
+Requisitos &  RF-1\newline
+            RF-1.1\newline
+            RF-1.2 \\ 
+Descripción & Los datos deben poder ser divididos en conjuntos de entrenamiento y validación. \\ 
+Precondiciones & Se debe disponer de un conjunto de datos. \\ 
+Acciones & 1. Se indicará qué porcentaje de datos del total se utilizará en el conjunto de validación. \newline
+            2. Aleatorización de la inclusión de instancias en el conjunto de entrenamiento o validación, permitiendo siempre una división paritaria en ambos conjuntos. \\ 
+Postcondiciones & Datos divididos en dos conjuntos.\\ 
+Excepciones & El conjunto no lleva datos o está corrupto. \\ 
+Importancia & Media\\
+}
+
+\tablaSinCabeceraConBandas{Caso de Uso \textit{Aplicar técnicas y algoritmos de preparación de los datos}}{p{3cm} p{9cm}}{2}{casouso2}
+{Caso de uso & Preparación de datos \\ 
+Requisitos &  RF-2\newline
+            RF-2.1\newline
+            RF-2.2 \\ 
+Descripción & Los datos deben poder ser divididos en conjuntos de entrenamiento y validación. \\ 
+Precondiciones & Se debe disponer de un conjunto de datos. \\ 
+Acciones & 1.  Se debe poder eliminar los valores nulos de la característica a entrenar. \newline 
+            2. Se debe poder imputar los valores perdidos o nulos en el resto del conjunto de datos. \\ 
+Postcondiciones & Ddatos preparados.\\ 
+Excepciones & El conjunto no lleva datos o está corrupto. \\ 
+Importancia & Media\\
+}
+
+\tablaSinCabeceraConBandas{Caso de Uso \textit{Entrenar un modelo}}{p{3cm} p{9cm}}{2}{casouso3}
+{Caso de uso & Entrenar un modelo \\ 
+Requisitos &  RF-3\newline
+            RF-3.1\newline
+            RF-3.2\newline
+            RF-3.3 \\ 
+Descripción & Se debe poder entrenar un modelo. \\ 
+Precondiciones & Se debe disponer de un conjunto de datos. \\ 
+Acciones & 1. Ofrecer la posibilidad de escoger entre diferentes algoritmos de clasificación. \newline
+           2. Debe guardarse el mejor modelo generado durante el entrenamiento. \newline
+           3. Se debe poder mostrar gráficamente los resultados del entrenamiento. \\ 
+Postcondiciones & Modelo entrenado.\\ 
+Excepciones & El conjunto no lleva datos o está corrupto. \\ 
+Importancia & Alta\\
+}
+
+\tablaSinCabeceraConBandas{Caso de Uso \textit{Búsqueda de mejor clasificador de forma automática.}}{p{3cm} p{9cm}}{2}{casouso4}
+{Caso de uso & Búsqueda automática de mejor clasificador \\ 
+Requisitos &  RF-4\newline
+            RF-4.1\newline
+            RF-4.2\newline
+            RF-4.3 \\ 
+Descripción & Se debe poder realizar búsquedas de mejor clasificador de forma automática. \\ 
+Precondiciones & Se debe instalar la librería de automl. \\ 
+Acciones & 1. Se debe poder cambiar el dataset a utilizar. \newline
+           2. Se debe poder cambiar los parámetros de búsqueda. \newline
+           3. Se debe obtener una solución gráfica en la que observar los resultados. \\ 
+Postcondiciones & Mejor clasificador encontrado.\\ 
+Excepciones & Error al realizar la tarea de búsqueda. \\ 
+Importancia & Media\\
+}
+
+\tablaSinCabeceraConBandas{Caso de Uso \textit{Optimización de hiperparámetros.}}{p{3cm} p{9cm}}{2}{casouso5}
+{Caso de uso & Optimización de hiperparámetros \\ 
+Requisitos &  RF-5\newline
+            RF-5.1\newline
+            RF-5.2 \\ 
+Descripción & Se debe poder optimizar los hiperparámetros de un modelo. \\ 
+Precondiciones & Se debe instalar la librería de optimización de hiperparámetros. \\ 
+Acciones & 1. Se debe poder cambiar el modelo a optimizar. \newline
+           2. Se debe obtener un gráfico con los resultados. \\ 
+Postcondiciones & Mejores hiperparámetros encontrados.\\ 
+Excepciones & Error al realizar la tarea de optimización. \\ 
+Importancia & Media\\
+}
+
+\tablaSinCabeceraConBandas{Caso de Uso \textit{Prueba de modelos}}{p{3cm} p{9cm}}{2}{casouso6}
+{Caso de uso & Prueba de modelos \\ 
+Requisitos &  RF-6\newline
+            RF-6.1 \\ 
+Descripción & Se debe poder probar un modelo guardado. \\ 
+Precondiciones & Modelos desarrollados alojados correctamente \\ 
+Acciones & 1. Se debe poder encontrar el modelo a cargar. \\ 
+Postcondiciones & Prueba correcta de modelo\\ 
+Excepciones & No se encuentra el modelo en la ubicación \\ 
+Importancia & Media\\
+}

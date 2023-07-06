@@ -1,0 +1,17 @@
+\apendice{Documentación técnica de programación}
+
+\section{Introducción}
+
+Comentaremos aquí los detalles más técnicos sobre el proyecto de forma que sea posible para cualquiera recrear los experimentos y continuar el trabajo aquí presentado.
+
+\section{Estructura de directorios}
+
+El código fuente del proyecto se encuentra en Github en el directorio \href{https://github.com/sgg0008/ml-COVID-19/tree/main/2. Cuadernos TFG}{2. Cuadernos TFG}
+
+\section{Compilación, instalación y ejecución del proyecto}
+
+El entorno de trabajo se  contenedor Docker \cite{docker:2013}. Bajo la aplicación \textit{Container Station} se instaló la imagen del contenedor \textit{jupyter/tensorflow-notebook} \cite{jupyterdocker:1991} que se descargó de la plataforma Docker Hub. En la instalación se añadió la creación de un volumen de almacenamiento persistente para poder ir guardando de forma segura los cuadernos que se iban realizando. Este contenedor se escogió porque ya incorpora gran parte del ecosistema de bibliotecas científicas de python; otras bibliotecas fueron instaladas en el arranque del contenedor ya que son utilizadas en este trabajo, como son Autosklearn, Pipeline profiler, Shap y Optuna.
+
+\section{Manual del programador}
+
+El entorno de ejecución es el mismo que el de desarrollo, realizándose en Jupyter Notebooks \cite{jupyter:2014} y en el lenguaje de programación Python \cite{python:1991}

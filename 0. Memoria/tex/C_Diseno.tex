@@ -1,0 +1,30 @@
+\apendice{Especificación de diseño}
+
+\section{Introducción}
+
+En este apartado recogemos el diseño experimental desarrollado en el proyecto.
+
+\section{Diseño de datos}
+
+La cohorte de datos han sido proporcionados por el Instituto de Investigación Sanitaria de Valdecilla (IDIVAL) sobre una población de 305 pacientes, cuyas muestras fueron recogidas entre Abril de 2020 y Marzo de 2021 y que tuvieron un resultado positivo en COVID-19. El valor de clasificación es el \textbf{score} de evolución clínica que tiene un valor de 1 a 5, siendo 1=asintomático; 2=tratamiento con gafas nasales; 3=tratamiento con ventimask; 4=Ingreso en UCI; 5=exitus.
+
+El dataset se compone de un archivo csv con las siguientes características:
+\begin{itemize}
+	\item 420 filas o determinaciones.
+	\item 97 columnas o marcadores.
+    \item Sólo hay 158 filas con el valor de clasificación score cumplimentado.
+\end{itemize}
+
+Los valores correspondientes a la intensidad de luz presentan una amplia variedad, moviéndose generalmente entre los intervalos de $-10^5$ a $10^5$. 
+
+\imagen{ejemdatos}{Ejemplo de conjunto de datos}
+
+\section{Diseño procedimental}
+
+En la realización de un nuevo experimento, el científico de datos posee total libertad para elegir las herramientas y las técnicas que va a aplicar. En cualquier caso, suele coincidir de forma general el flujo de trabajo.
+
+El proceso de creación de un experimento lleva habitualmente las siguentes fases: carga de datos, preparación de estos, configuración del modelo y entrenamiento. Puede verse en la imagen \nameref{fig:diagflujo1}.
+
+\imagen{diagflujo1}{Diagrama de flujo de realización de un experimento}
+
+\section{Diseño arquitectónico}

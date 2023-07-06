@@ -1,0 +1,121 @@
+\apendice{Plan de Proyecto Software}
+
+\section{Introducción}
+
+Como primera aproximación, en este apartado trataremos de explicar la planificación del proyecto y qué fases se han llevado a cabo.
+
+\section{Planificación temporal}
+
+Se ha considerado una metodología ágil (scrum) para llevar la planificación y el desarrollo de este proyecto, utilizando los conceptos teóricos y prácticos de la asignatura \textit{Gestión de proyectos}.
+
+La plataforma elegida fue Github y en ella se fueron escribiendo tanto los \textit{milestones} como los \textit{issues}.
+
+El proyecto se comenzó realizando sprints cada dos semanas y finalizando cada sprint con una reunión con los tutores, en las que se ponía en común los avances en el proyecto, proponiendo mejoras o cambios, y se establecían los objetivos para el siguiente sprint.
+
+Estas sprints que comenzaron en septiembre de 2021 se vieron interrumpidos hasta junio de 2023 por diferentes motivos personales y se retomaron para poder terminar este proyecto.
+
+A continuación, se detalla el trabajo realizado en cada sprint:
+
+\subsection{14/09/2021 – 30/09/2021 \newline Sprint 0: Kickoff software project}
+
+El primer sprint lo comenzamos con el número 0 debido a su carácter inicial que básicamente consistió en ver cómo se iban a planificar los sprints, exponer el alcance del proyecto y dar forma al inicio del proyecto de forma oficial.
+
+\begin{itemize}
+    \item Creación de repositorio en Github para poder llevar la planificación del proyecto, así como alojamiento de los futuros modelos desarrollados.
+    \item Exposición del alcance del proyecto e información acerca de la cohorte de datos aún en proceso de petición al Instituto de de Investigación Sanitaria de Valdecilla (IDIVAL)
+    \item Revisión preliminar de bibliografía en la que empezar a poner las bases de cómo acometer el proyecto.
+    \item Consulta de TFG's presentados en la UBU relacionados con el proyecto a acometer  
+    \item Formalización de registro del proyecto en UBU.
+\end{itemize}
+
+
+\subsection{01/10/2021 – 14/10/2021 \newline Sprint 1: Replicación trabajos relacionados}
+
+Aquí se comienza a implantar los cimientos del proyecto comenzando una investigación profunda de trabajos relacionados que permitiese entender cómo acometer un proyecto de aprendizaje automático sobre datos sanitarios.
+
+\begin{itemize}
+    \item Investigación de bibliotecas en python para la interpretación de modelos de caja negra
+    \item Escoger un trabajo relacionado con este proyecto para poder replicarlo
+    \item Comenzar a añadir a la memoria los trabajos relacionados
+\end{itemize}
+
+
+\subsection{15/10/2021 – 31/10/2021 \newline Sprint 2: Cumplimentar primeros capítulos de la memoria}
+
+Comenzamos a cumplimentar la memoria comenzando por el primer acercamiento a LaTeX y repasar la plantilla de la memoria.
+
+\begin{itemize}
+    \item Primeros pasos con LaTex y acercamiento a la utilización de la herramienta web Overleaf.
+    \item Cumplimentar memoria: Introducción
+    \item Cumplimentar memoria: Objetivos del proyecto
+\end{itemize}
+
+
+\subsection{01/11/2021 – 15/11/2021 \newline Sprint 3: Replica de trabajos relacionados}
+
+Se recibe la cohorte de datos desde el IDIVAL y se comienza el desarrollo de un modelo de réplica del trabajo relacionado escogido \textit{Innate and Adaptive Immune Assessment at Admission to Predict Clinical Outcome in COVID-19 Patients}\cite{sansegundo:2021}
+
+\begin{itemize}
+    \item Replicar el modelo en python.
+    \item Comparar resultados de la replicación con los obtenidos en los trabajos
+    \item Comparación de resultados con otros clasificadores
+\end{itemize}    
+
+
+\subsection{16/11/2021 – 30/11/2021 \newline Sprint 4: Mejoras en la réplica del trabajo}
+
+En este sprint se intenta mejorar el cuaderno jupyter de la réplica del trabajo, puesto que el resultado que arroja el actual cuaderno está bastante lejos del resultado del trabajo original.
+
+\begin{itemize}
+    \item Implementar Validación cruzada 2x5
+    \item Utilizar pipeline en código
+\end{itemize}
+
+
+\subsection{01/12/2021 – 23/12/2021 \newline Sprint 5: Buscar clasificador con AutoSKlearn}
+
+Se propone seguir con el concepto experimental del proyecto y se acude a la biblioteca autosklearn para buscar mejores clasificadores para nuestra cohorte de datos.
+
+\begin{itemize}
+    \item Estudiar uso de AutoSKlearn.
+    \item Dockerización de Anaconda para incluir AutoSKLearn y demás librerías necesarias.
+    \item Creación de cuaderno jupyter para uso de Autosklearn.
+    \item Recoger resultados de AutoSKLearn aplicados a la cohorte de datos.
+    \item Instalación y uso de librería Shap.
+    \item Instalación y investigación de librerías de optimización de parámetros.
+\end{itemize}
+
+
+\subsection{21/06/2023 - 06/07/2023 \newline Sprint 6: Retomar el trabajo}
+
+Se vuelve a retomar el trabajo dónde se dejó en 2022. Se revisan todos los cuadernos jupyter y la documentación para implementar los cambios que sean necesarios.
+
+\begin{itemize}
+    \item Revisión de la documentación de la memoria
+    \item Reorganización del espacio GitHub
+    \item Actualización contenedor con la última versión de Jupyter Notebooks
+    \item Revisión y ejecución de cuadernos jupyter realizados
+    \item Cumplimentación de los apartados de la memoria que aún no estaban documentados
+    \item Realización de presentación para los vídeos a entregar
+    \item Entrega de TFG en los espacios asignados en UBU Virtual
+\end{itemize}
+
+
+\section{Estudio de viabilidad}
+
+A continuación se expone la posible viabilidad legal y económica de este proyecto.
+
+\subsection{Viabilidad económica}
+
+Por las características experimentales de este proyecto, creemos que este proyecto no se enmarca dentro de unas aplicaciones "comerciales"; el interés es puramente científico y en aras de aumentar el conocimiento sobre el aprendizaje automático con datos sanitarios.
+
+También es correcto indicar, que llegado el momento en que se pudiera establecer un modelo de clasificación de pacientes en el triaje de una admisión hospitalaria con una muy alta precisión, es muy posible que las empresas de software hospitalario quisieran implementarlo en sus cores, si bien es cierto que tratándose en una pandemia, el uso del modelo distribuido debería ser de acceso universal.
+
+El colectivo principal que mayor interés podría despertar en este proyecto sería, por supuesto, el de los profesionales sanitarios, sin dejar de lado a los entes gubernamentales, ya que estos últimos serían los posibles encargados de su distribución. 
+
+
+\subsection{Viabilidad legal}
+
+En el caso de las herramientas, no se considera ningún impedimento la legislación, puesto que todas las herramientas pueden utilizarse en cualquier aplicación comercial, debido a sus licencias (BSD o MIT en general).
+
+Por contra, al estar tratando datos clínicos que se enmarcan dentro del nivel más alto de segurida de la información, se deberían establecer fuertes medidas de seguridad sobre ellos.

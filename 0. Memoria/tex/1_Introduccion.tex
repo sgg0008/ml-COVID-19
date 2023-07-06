@@ -1,0 +1,23 @@
+\capitulo{1}{Introducción}
+
+El síndrome respiratorio agudo severo coronavirus 2 (SARS-coV-2), más conocido como COVID-19, tuvo sus primeros casos en la ciudad de Wuhan, en la provincia de Hubei (China) a finales de 2019, en la que se detectaron los primeros casos de una enfermedad respiratoria desconocida. Desde entonces se ha expandido a lo largo del mundo creando una pandemia con más de 676.609.837 de casos confirmados y con un total de 6.881.955 de muertes asociadas. En España, la incidencia de casos confirmados es de 13.770.429 de pacientes con una mortalidad de 119.479 personas.\footnote{Datos extraídos del cuadro de mando de COVID-19 de la Universidad John HopKins (JHU) a fecha 29/06/2023}
+
+\imagen{mapamundial}{Casos COVID-19 en todo el mundo ~\cite{jhu:2023}. }
+
+En Cantabria, pese a ser una comunidad autónoma con una densidad de población media, el número de casos confirmados asciende a 131.501 en tanto que la enfermedad a producido 815 fallecidos.\footnote{Datos extraídos del portal del Servicio Cántabro de Salud (SCS) con ultima actualización a fecha 30/03/2022} 
+
+La prueba más fiable en la detección de la enfermedad es la Reverse Transcription-Polymerase Chain Reaction (RT-PCR) cuyo resultado tarda en devolverse unas horas. Los resultados de la prueba PCR solo ayudan a detectar si un paciente tiene la enfermedad (positivo) o no (negativo).  Además, de esta información, sería interesante intentar predecir la posible evolución de la enfermedad en el paciente. Es por esto de la importancia de desarrollar modelos de aprendizaje automático que ayuden en el triaje de los pacientes de forma rápida para poder controlar la enfermedad en los centros hospitalarios.
+
+\section{Machine Learning en el triaje del COVID-19}
+
+La aparición de la pandemia desencadenada por el COVID-19 produjo muchos casos de pacientes con síntomas en muy poco tiempo, lo que condujo a una falta de recursos hospitalarios. Esto obligó a buscar alternativas en el aprendizaje automático para producir modelos~\cite{patel:2021}\cite{zhao:2020}\cite{kar:2021}\cite{subudhi:2021}\cite{kurstjens:2021} que pudieran ayudar en el triaje de los pacientes que llegasen al hospital y así ofrecer a los profesionales sanitarios una herramienta con la que poder tomar decisiones.
+
+\imagen{ejemplomodelo}{Diagrama esquemático representando el proceso de desarrollo de un modelo de aprendizaje automático. \cite{subudhi:2021}}
+
+El artículo científico que se toma como referencia \textit{Innate and Adaptive Immune Assessment at Admission to Predict Clinical Outcome in COVID-19 Patients}~\cite{sansegundo:2021} evalúa un amplio panel multiparamétrico de anticuerpos de componentes celulares y humorales de la respuesta inmunitaria innata y adaptativa para buscar biomarcadores que pronosticasen el COVID-19.
+
+El conjunto de datos utilizado está formado por muestras tomadas a 155 pacientes al ingreso del hospital y se categorizaron como leves o graves, en el caso de requerir oxigenoterapia. El modelo predictivo que se utilizó es la regresión logística e incluyó las siguientes características: la edad, la ferritina, el dímero D, la suma absoluta de linfocitos, el  \% monocitos no clásicos, C4 y el  \% de $CD8^{+}CD27^{-}CD28^{-}$.
+
+La edad, el dímero D y la ferritina son características utilizadas habitualmente por los científicos en modelos predictivos, tal y como veremos en el apartado \hyperref[trabajosrel]{trabajos relacionados}.
+
+En el presente trabajo, se abordará el triaje de pacientes a partir de marcadores recogidos en la admisión con aprendizaje automático. Replicaremos el modelo de regresión logística utilizado en el artículo original y buscaremos nuevos modelos predictivos que pudieran mejorar sus datos. Los términos marcador, variable y característica son equivalentes y dependen del contexto en el que se utilicen. En entornos hospitalarios se utiliza marcador y variable y en entornos de investigación en ciencias de datos se utilizan característica y variable.

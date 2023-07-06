@@ -1,0 +1,95 @@
+\capitulo{4}{Técnicas y herramientas}
+
+A continuación se enumeran y detallan someramente algunas técnicas y herramientas que se ha utilizado en la realización y desarrollo de este proyecto:
+
+\section{Docker}
+
+Docker\cite{docker:2013} es un software libre y de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos. En este TFG, he utilizado Docker instalado en un NAS de QNAP para crear un contenedor con Anaconda Distribution y así poder realizar los diversos modelos en python. \url{https://www.docker.com}
+
+\subsection{Docker Hub}
+
+Es un servicio en línea proporcionado por Docker que sirve como repositorio central para imágenes de contenedores Docker. Es un registro público y gratuito donde los desarrolladores y las organizaciones pueden almacenar, compartir y descargar imágenes de contenedores Docker.
+
+\section{Anaconda}
+
+Anaconda\cite{anaconda:2012} es una distribución de Python ampliamente utilizado por los desarrolladores. \url{https://www.anaconda.com}
+
+\subsection{Jupyter Notebooks}
+
+Dentro de la distribución de python de Anaconda se encuentran los cuadernos Jupyter\cite{jupyter:2014}. También ampliamente utilizados, permiten presentar en un mismo documento texto maquetado con Markdown, código en diferentes lenguajes y los resultados de la ejecución de dicho código, pudiendo representar dichos datos en forma de texto o gráficos, lo que representa una herramienta fundamental para la formación y para la explicación paso a paso de códigos de desarrollo. \url{https://www.jupyter.org}
+
+\section{Python}
+
+Es un lenguaje de programación interpretado y de alto nivel. Es conocido por su sintaxis sencilla y legible, lo que lo hace ideal para principiantes. Python\cite{python:1991} es versátil y se puede utilizar para desarrollar una amplia gama de aplicaciones, desde scripts simples hasta aplicaciones web y científicas de alto rendimiento. Tiene una amplia biblioteca estándar que cubre muchas tareas comunes, lo que facilita el desarrollo de aplicaciones sin necesidad de depender de bibliotecas externas. Python es orientado a objetos, lo que permite una programación modular y estructurada. Es interpretado y multiplataforma, lo que significa que el código fuente se ejecuta directamente y puede ejecutarse en diferentes sistemas operativos.
+
+\section{Bibliotecas de Python}
+
+Python cuenta con una amplia variedad de bibliotecas que proporcionan funcionalidades adicionales y extienden las capacidades del lenguaje. Estas bibliotecas cubren una amplia gama de áreas y permiten a los desarrolladores ahorrar tiempo y esfuerzo al aprovechar el trabajo previo de otros programadores.
+
+\subsection{Pandas}
+
+Ofrece estructuras de datos y herramientas de análisis de datos de alto rendimiento. Permite manipular, limpiar y analizar datos de manera eficiente.
+
+\subsection{Numpy}
+
+Proporciona un soporte completo para arreglos multidimensionales y operaciones matemáticas de alto rendimiento. Es ampliamente utilizado en el procesamiento numérico y científico de datos.
+
+\subsection{Matplotlib}
+
+Es una biblioteca de trazado de gráficos 2D que permite crear visualizaciones de datos de alta calidad. Se utiliza comúnmente para generar gráficos, histogramas, diagramas de dispersión y mucho más.
+
+\subsection{Scikit-learn}
+
+Es una biblioteca de aprendizaje automático de código abierto que proporciona algoritmos para tareas comunes, como clasificación, regresión, agrupación y selección de características.
+
+\subsection{StratifiedKFold}
+
+Es una técnica de validación cruzada utilizada en el aprendizaje automático para evaluar y validar modelos de clasificación. Es una extensión de la validación cruzada k-fold estándar, pero con la adición de la estratificación de las muestras en cada pliegue. La estratificación se refiere a que cada pliegue o partición de los datos de entrenamiento y prueba mantiene la misma proporción de clases o etiquetas que el conjunto de datos original.
+
+\subsection{Pipeline}
+
+Es una secuencia ordenada de pasos que se aplican a los datos para realizar tareas de preprocesamiento, transformación y modelado. Un pipeline facilita la organización y automatización del flujo de trabajo en el desarrollo de modelos de aprendizaje automático.
+
+\subsection{Seaborn}
+
+Es una biblioteca de visualización de datos basada en Matplotlib y es ampliamente utilizada en el análisis exploratorio de datos y la creación de gráficos estadísticos. Proporciona una interfaz más sencilla y atractiva visualmente para crear gráficos informativos y estéticamente agradables.
+
+\subsection{Autosklearn} \label{autosklearn}
+
+Es una biblioteca de aprendizaje automático automatizado (AutoML). Proporciona una interfaz fácil de usar que automatiza el proceso de selección de algoritmos, preprocesamiento de datos, ajuste de hiperparámetros y generación de modelos de aprendizaje automático.
+
+\subsection{Pipeline Profiler}
+
+Es una herramienta que se utiliza en el contexto del aprendizaje automático y los pipelines para analizar y comprender el rendimiento y el comportamiento de un pipeline de manera detallada. Proporciona información valiosa sobre cómo se están ejecutando los diferentes componentes del pipeline y ayuda a identificar cuellos de botella y posibles áreas de mejora en términos de tiempo de ejecución y eficiencia. Al utilizar esta información, se pueden realizar ajustes y optimizaciones para mejorar el rendimiento y la eficiencia del pipeline.
+
+\subsection{Optuna}
+
+Proporciona un enfoque basado en pruebas para encontrar automáticamente los mejores valores de hiperparámetros para un modelo de aprendizaje automático. Optuna ayuda a simplificar y automatizar este proceso al buscar de manera eficiente el espacio de hiperparámetros para encontrar la mejor configuración.
+
+\subsection{Shap}
+
+SHAP (SHapley Additive exPlanations) es utilizada para explicar las predicciones de modelos de aprendizaje automático. Proporciona una forma de entender y descomponer la contribución de cada característica o variable en el resultado de la predicción de un modelo. Proporciona una forma intuitiva y cuantitativa de entender cómo las características individuales influyen en las predicciones del modelo, lo que puede ser útil para la depuración de modelos, la toma de decisiones y la confianza en los resultados obtenidos.
+
+\subsection{Regresión Logística}
+
+Es un algoritmo de aprendizaje automático supervisado utilizado para predecir la probabilidad de que una variable binaria dependiente esté presente en función de variables independientes. Aunque el nombre incluye la palabra "regresión", en realidad es un algoritmo de clasificación.
+
+\subsection{Lda} \label{lda}
+
+Linear Discriminant Analysis (LDA) es un algoritmo de aprendizaje supervisado utilizado para la clasificación y reducción de dimensionalidad, que busca encontrar una proyección lineal óptima para maximizar la separabilidad entre diferentes clases.
+
+\section{Git}
+
+Es un sistema de control de versiones distribuido ampliamente utilizado para el desarrollo de software y el seguimiento de cambios en archivos y proyectos. 
+
+\subsection{Github}
+
+Es una plataforma en línea basada en Git que permite a los desarrolladores almacenar, colaborar, gestionar y compartir proyectos de software de manera eficiente. Es uno de los servicios de alojamiento de repositorios más populares y ampliamente utilizados en la comunidad de desarrollo de software.
+
+\section{\LaTeX}
+
+Es un sistema de composición de documentos ampliamente utilizado para crear documentos de alta calidad, especialmente en ámbitos académicos, científicos y técnicos. A diferencia de los procesadores de texto tradicionales, LaTeX se enfoca en la estructura y el contenido del documento en lugar del formato visual, lo que permite obtener resultados profesionales y consistentes. Se utiliza comúnmente para crear documentos científicos, tesis académicas, artículos de investigación, informes técnicos, libros y presentaciones.
+
+\subsection{Overleaf}
+
+Es una plataforma en línea que permite a los usuarios crear, editar y colaborar en documentos LaTeX de manera colaborativa. Es especialmente popular entre la comunidad académica y científica debido a su facilidad de uso y la capacidad de trabajar en documentos LaTeX sin la necesidad de instalar software adicional.

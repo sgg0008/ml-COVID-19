@@ -1,0 +1,70 @@
+\capitulo{3}{Conceptos teóricos}
+
+\section{Minería de Datos}
+
+La minería de datos es un proceso de exploración y análisis de grandes conjuntos de datos con el objetivo de descubrir patrones, relaciones y conocimientos útiles. Se utiliza en diversas industrias y disciplinas para tomar decisiones basadas en datos y obtener información valiosa. La cantidad de datos que se produce cada día crece de forma exponencial en todos los aspectos de la vida. Esto nos ha llevado a utilizar técnicas como el aprendizaje automático para poder explotar esos datos y sacarles un rendimiento.
+
+Para poder extraer conocimiento de esta ingente cantidad de datos existen diversas metodologías como CRISP-DM, Scrum, Kanban... Nosotros hemos utilizado la primera para crear los modelos de aprendizaje automático.
+
+\section{CRISP-DM}
+
+La metodología CRISP-DM (Cross-Industry Standard Process for Data Mining) es un enfoque utilizado para abordar proyectos de minería de datos. Aunque originalmente se desarrolló para aplicaciones comerciales, se puede adaptar para analizar y abordar los desafíos relacionados con el COVID-19.
+
+Se compone de 6 fases:
+\begin{itemize}
+	\item \textbf{Entendimiento del Negocio} Comprensión clara de los objetivos y requisitos relacionados con el proyecto.
+	\item \textbf{Entendimiento de los Datos} Recopilación y exploración de datos para comprender su calidad, estructura y características, identificando posibles problemas o limitaciones que nos podrían afectar a los análisis posteriores.
+    \item \textbf{Preparación de los datos} Realización de tareas de limpieza y transformación de los datos, imputando datos que pudieran faltar, eliminando duplicados, normalizando dichos datos y seleccionando características relevantes.
+    \item \textbf{Modelado} y análisis de datos para responder a las preguntas planteadas en la etapa de comprensión del negocio, incluyendo la construcción de modelos predictivos. En esta fase puede ser necesario volver a la fase anterior para volver a preparar los datos.
+    \item \textbf{Evaluación} de los modelos desarrollados, analizando los resultados y comparándolos con los objetivos iniciales. Se considera la precisión, la eficacia y la calidad de los modelos.
+    \item \textbf{Despliegue} del modelo construido que haya dado mejor resultado para que pueda ser utilizado con otros datos.
+\end{itemize}
+
+\imagen{crisp-dm}{Metodología de datos CRISP-DM \cite{crisp-img:2021}}
+
+A continuación, se proporciona un resumen de cómo se ha aplicado la metodología CRISP-DM a este proyecto:
+
+\subsection{Entendimiento del negocio}
+El triaje sanitario es el proceso de evaluar la gravedad de la condición de un paciente y determinar el orden de atención médica en situaciones en las que los recursos son limitados. La implementación de modelos de aprendizaje automático en los centros hospitalarios permitiría ayudar en la clasificación y priorización de pacientes basándose en datos clínicos y síntomas relacionados con la enfermedad. Además, esto permitiría conocer de antemano la necesidad de recursos hospitalarios, como camas de cuidados intensivos o respiradores, y planificar en consecuencia.
+
+El aprendizaje automático puede ser una herramienta útil en el triaje sanitario, pero no debe reemplazar la experiencia y el juicio clínico de los profesionales de la salud. Los modelos de aprendizaje automático deben utilizarse como una herramienta de apoyo a la toma de decisiones, pero siempre debe haber una supervisión y revisión médica adecuada para tomar decisiones finales.
+
+El desarrollo de modelos de aprendizaje automático puede ser de gran utilidad en el triaje de pacientes y en la gestión de recursos en los centros hospitalarios durante la pandemia de la enfermedad. Estos modelos podrían ayudar a controlar la propagación de la enfermedad y mejorar la atención médica de los pacientes.
+
+\subsection{Entendimiento de los datos}
+La cohorte de datos han sido proporcionados por el Instituto de Investigación Sanitaria de Valdecilla (IDIVAL) sobre una población de 305 pacientes, cuyas muestras fueron recogidas entre Abril de 2020 y Marzo de 2021 y que tuvieron un resultado positivo en COVID-19. El valor de clasificación es el \textbf{score} de evolución clínica que tiene un valor de 1 a 5, siendo 1=asintomático; 2=tratamiento con gafas nasales; 3=tratamiento con ventimask; 4=Ingreso en UCI; 5=exitus.
+
+El dataset se compone de un archivo excel con las siguientes características:
+\begin{itemize}
+	\item 420 filas o determinaciones.
+	\item 97 columnas o marcadores.
+    \item Sólo hay 158 filas con el valor de clasificación score cumplimentado.
+\end{itemize}
+
+Investigando los datos, vemos características que no vamos a utilizar debido a qué son fechas o números identificativos de muestras o pacientes que no nos aportan ningún tipo de información.
+
+\subsection{Preparación de los datos}
+Creamos un nuevo dataset copia del original y eliminamos las columnas que comentamos en la sección anterior que no nos aportan datos para clasificación.
+
+Asimismo, observamos que el valor de clasificación \textit{score} tiene muchas filas vacías, lo que no nos permitiría realizar la clasificación, por lo que también las eliminamos.
+
+Una vez tenemos las características con las que vamos a trabajar, observamos que tienen muchos valores perdidos, por lo que utilizaremos la \hyperref[imputadatos]{imputación de datos} para otorgar un valor aproximado para ese dato perdido.
+
+\subsection{Modelado}
+Aquí se aplican técnicas de modelado y análisis de datos para responder a las preguntas planteadas en la etapa de entendimiento del negocio. En el caso de este proyecto, se han realizado varios modelos, utilizando \hyperref[autosklearn]{Autosklearn} para realizar una búsqueda del clasificador que mejor funciona con el dataset. Los modelos generados con \hyperref[lda]{lda} han sido los dos métodos de clasificación con los mejores resultados.
+
+\subsection{Evaluación}
+En esta fase, se evalúan los modelos desarrollados. Se analizan los resultados y se comparan con el trabajo de partida inicial. Si los modelos no cumplen con los requisitos, se pueden realizar ajustes o mejoras.
+
+\subsection{Despliegue}
+Los modelos desarrollados se podrán poner a disposición de los profesionales para poder obtener un triaje de pacientes con síntomas COVID-19 a partir de una serie de muestras que se les recoge en el hospital.
+
+\section{Imputación de datos} \label{imputadatos}
+La imputación de datos se refiere al proceso de reemplazar los valores perdidos en un conjunto de datos con valores estimados o inferidos. Es una técnica comúnmente utilizada en el análisis de datos para abordar el problema de los valores perdidos, ya que estos pueden afectar la calidad y la validez de los resultados obtenidos.
+
+Existen varios métodos y técnicas, pero en los modelos de este proyecto he utilizado dos:
+
+\begin{itemize}
+	\item \textbf{Imputación simple} Consiste en reemplazar los valores perdidos por un único valor, como la media, la mediana o el valor más frecuente del conjunto de datos. Esta técnica es rápida y sencilla, pero no tiene en cuenta la relación entre las variables y puede introducir sesgos en los resultados.
+	\item \textbf{Imputación por vecinos más cercanos} Se basa en encontrar observaciones similares a aquellas con valores que faltan y utilizar los valores de las observaciones vecinas para estimar los valores perdidos. Esta técnica es útil cuando los datos tienen una estructura de vecindad o proximidad.
+\end{itemize}

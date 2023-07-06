@@ -1,0 +1,28 @@
+\capitulo{7}{Conclusiones y Líneas de trabajo futuras}
+
+Se exponen a continuación las conclusiones que se extraen de la realización de este proyecto, así como las posibles líneas de trabajo que se pueden considerar en un futuro.
+
+\section{Conclusiones}
+
+\subsection{Relacionadas con los resultados}
+
+Los resultados obtenidos en los diferentes modelos realizados son parecidos a los obtenidos por el trabajo que se replicó. Esto se debe en parte a que se realizó sobre una pequeña cantidad de muestras y, por otra parte, a qué dichos datos no estaban del todo completos.
+
+Estos resultados de los modelos se pueden mejorar con una mayor cantidad de muestras recogidas y con una mayor calidad en la recogida de los datos.
+
+\subsection{Técnicas}
+En este proyecto se ha realizado un seguimiento experimental riguroso:
+\begin{itemize}
+    \item Se realizó un estudio pormenorizado de los trabajos relacionados y la utilización que en ellos se hace de características, técnicas y herramientas, que deparó un mejor conocimiento de la realización de experimentos de aprendizaje automático con marcadores clínicos.
+    \item Se prepararon los datos de la cohorte proporcionada, ya que contenían variables que no aportaban una información clara para nuestra investigación (como las fechas) y algunos valores nulos que fueron subsanados con la imputación de datos.
+    \item La realización de la réplica del trabajo \textit{Innate and Adaptive Immune Assessment at Admission to Predict Clinical Outcome in COVID-19 Patients}\cite{sansegundo:2021} permitió conprender el porqué del trabajo original y el modelo de regresión logística aplicado.
+    \item La utilización de autosklearn conllevó un estudio de esta biblioteca de python para poder entender qué valores introducir en el modelo automl que produjeran mejores resultados.
+    \item Con la optimización de hiperparámetros con la biblioteca Optuna se pudo comprender cómo mejorar los experimentos en base a la realización de muchos otros experimentos variando los hiperparámetros.
+    \item Conocimiento de biblioteca Shap para explorar la importancia de características del modelo de aprendizaje automático
+\end{itemize}
+
+\section{Líneas de trabajo futuras}
+
+Como cualquier otro proyecto de índole experimental, una de las líneas de trabajo futuro es continuar con la experimentación. La tecnología avanza de forma imparable cada día y es por esto que, las bibliotecas científicas de software se actualizan y mejoran, las técnicas de aprendizaje automático se depuran y los sistemas dónde ejecutar las herramientas para los experimento no dejan de crecer en rendimiento. Todos estos factores hacen que un experimento realizado, pueda mejorarse de forma sustancial en el tiempo.
+
+Otra línea clara a seguir es la distribución de los modelos para la utilización por parte de cualquier usuario, por ejemplo en un entorno web como se hizo en el artículo \textit{Development of a severity of disease score and classification model by machine learning for hospitalized COVID-19 patients} \cite{marcos:2021} con la distribución de la página \href{https://covid19salamanca-score.herokuapp.com/}{Herokuapp}; en esta aplicación, un profesional sanitario puede obtener una ayuda para identificar de manera temprana a los pacientes que morirán o requerirán ventilación mecánica durante la hospitalización a partir de las características clínicas y de laboratorio que debe introducir.

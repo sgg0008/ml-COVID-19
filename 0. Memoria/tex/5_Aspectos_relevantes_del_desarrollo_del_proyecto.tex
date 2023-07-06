@@ -1,0 +1,244 @@
+\capitulo{5}{Aspectos relevantes del desarrollo del proyecto}
+
+Después de la pandemia que sufrimos por el virus COVID-19 y, por ser trabajador en un hospital, habiendo sido testigo de forma directa del caos que se produjo en los hospitales por la acumulación masiva de casos y la dificultad de diagnosticar esta enfermedad de forma rápida, me propuse investigar de qué forma podría contribuir para poder paliar mejorar esta situación.
+
+Realizando una investigación de los artículos científicos publicados acerca de modelos predictivos de COVID-19, encontré el artículo \textit{Innate and Adaptive Immune Assessment at Admission to Predict Clinical Outcome in COVID-19 Patients}\cite{sansegundo:2021} de investigadores del IDIVAL y me puse en contacto con ellos para mostrar interés en experimentar con su dataset aplicándole técnicas de minería de datos para intentar mejorar su resultado.
+
+\section{Estado del arte}
+
+Se realizó una investigación de los diferentes artículos encontrados relacionados con el desarrollo de modelos de aprendizaje automático que pudieran ayudar en el diagnóstico de pacientes con síntomas equivalentes a los desarrollados por el COVID-19.
+
+Se confeccionó un excel con una pestaña con el listado de los artículos escogidos, fecha de publicación, descripción y el motivo del interés al escogerlo. En las demás pestañas se fueron recogiendo de cada artículo las variables escogidas para los experimentos, así como las técnicas y las herramientas utilizadas a la hora de construir los modelos. En la tabla \ref{tabla:vartecher} se expone un balance de las más usadas:
+
+\tablaSinColores{Variables, técnicas y herramientas más utilizadas}{p{3.8cm} p{5.3cm} p{2.6cm}}{3}{vartecher}
+{Variables & Técnicas & Herramientas\\}{
+Age (11) & AUC ROC (11) & Python (11)\\
+Suma de Linfocitos (8) & Regresión Logística (9) & R (3)\\
+D-Dimer (7) & Random Forest (6) & \\
+Ferritin (4) & XGB (6)  & \\
+C Reactive Protein (4) & Extra Trees (3)  & \\
+}
+
+En el siguiente capítulo \hyperref[trabajosrel]{6. Trabajos relacionados} se desarrolla más esta información de los artículos en dos tablas.
+
+Tanto el libro excel en el que se recogen el listado de los artículos y el estudio de sus variables, técnicas y herramientas; así como los artículos descargados en formato pdf, se encuentran en el repositorio del trabajo en Github: \href{https://github.com/sgg0008/ml-COVID-19/tree/main/1. Trabajos Relacionados}{1. Trabajos Relacionados}
+
+\section{Preparación del entorno de trabajo}
+
+Para el desarrollo de los cuadernos Jupyter de Anaconda y la ejecución de los mismos, se ha utilizado la dockerización de Anaconda bajo un entorno hardware en un NAS QNAP TS-251+ con un procesador Intel de 4 núcleos y 16Gb de RAM.
+
+\imagen{jupyterdocker}{Jupyter Docker Stacks \cite{jupydock-img:2023}}
+
+Bajo la aplicación \textit{Container Station} se instaló la imagen del contenedor \textit{jupyter/tensorflow-notebook} \cite{jupyterdocker:1991} que se descargó de la plataforma Docker Hub. En la instalación se añadió la creación de un volumen de almacenamiento persistente para poder ir guardando de forma segura los cuadernos que se iban realizando. Este contenedor se escogió porque ya incorpora gran parte del ecosistema de bibliotecas científicas de python; otras bibliotecas fueron instaladas en el arranque del contenedor ya que son utilizadas en este trabajo, como son Autosklearn, Pipeline profiler, Shap y Optuna.
+
+La elección de utilizar como entorno de trabajo los cuadernos jupyter dockerizados es porque proporcionan una serie de ventajas:
+\begin{itemize}
+    \item Portabilidad: Es fácilmente portable entre diferentes sistemas operativos y entornos de desarrollo, lo que evita problemas de configuración y compatibilidad.
+    \item Reproducibilidad: Se crean imágenes de contenedores que contienen todas las dependencias y configuraciones específicas de tu Jupyter Notebook, lo que facilita la reproducción de resultados y la colaboración.
+    \item Aislamiento: Los paquetes o bibliotecas instalados en el contenedor no afectarán a tu sistema host, y viceversa.
+    \item Escalabilidad: Permite manejar grandes conjuntos de datos y ejecutar cálculos intensivos de manera eficiente utilizando recursos distribuidos.
+    \item Administración simplificada: Docker facilita la gestión de múltiples Jupyter Notebooks y entornos. Puedes crear y administrar diferentes contenedores para proyectos específicos o diferentes configuraciones de entorno.
+    \item Flexibilidad: Permite personalizar y configurar tu entorno para instalar las bibliotecas y herramientas necesarias, configurar extensiones y temas, y ajustar los recursos del contenedor para optimizar el rendimiento.
+\end{itemize}
+
+\section{Cohorte de datos}
+
+La cohorte de datos ha sido proporcionada por el Instituto de Investigación Sanitaria de Valdecilla (IDIVAL) sobre una población de 305 pacientes, cuyas muestras fueron recogidas entre Abril de 2020 y Marzo de 2021. Está constituida por las variables que aparecen en la tabla \ref{tabla:variablesdataset}
+
+\tablaSinColores{Variables del dataset}{p{3.3cm} p{8.9cm}}{2}{variablesdataset}
+{Variable & Descripción\\}{IDInm & Identificacion de la muestra\\
+NH & Número de historia clínica\\
+AntiN & Respuesta anti proteína N de SARS-CoV-2\\
+AntiS & Respuesta anti proteína S de SARS-CoV-2\\
+AntiM & Respuesta anti proteína M de SARS-CoV-2\\
+age & Edad\\
+gender & Género\\
+score & Score de evolución clínica\\
+Line & Timepoint\\
+Timepoint & Pacientes en función de covid y tiempo de seguimiento\\
+IL6 & Niveles de interleucina 6 en suero\\
+ferritina & Niveles de ferritina sérica\\
+troponina & Niveles de troponina sérica\\
+LDH & Niveles de lactato deshidrogenasa sérico\\
+PCR & Niveles de proteína C reactiva sérica\\
+procalcit & Niveles de procalcitonina sérica\\
+DimD & Niveles de Dímero D en suero\\
+fechaAnalisis & Fecha de análisis\\
+fechaInicioSintomas & Fecha de Inicio de Síntomas\\
+fechaPCRpos & Fecha de PCR positiva\\
+fechaIngreso & Fecha de Ingreso\\
+fechaIngresoUCI & Fecha de Ingreso UCI\\
+fechaAltaUCI & Fecha de alta en UCI\\
+fechaAlta & Fecha de Alta general\\
+fechaExitus & Fecha de exitus\\
+P3 & \% de Linfocitos T CD3\\
+P4 & \% de Linfocitos T CD4\\
+P8 & \% de Linfocitos T CD8\\
+ratio & Ratio CD4/CD8\\
+P19 & \% de Linfocitos B CD19\\
+P16 & \% de Linfocitos NK (CD16CD56)\\
+PNKT & \% de Linfocitos NKT (CD3CD16CD56)\\
+LINF ABS & Linfocitos absolutos\\
+3 & Linfocitos T CD3 absolutos\\
+4 & Linfocitos T CD4 absolutos\\
+8 & Linfocitos T CD8 absolutos\\
+19 & Linfocitos B CD19 absolutos\\
+NK & Linfocitos NK absolutos\\
+NKT & Linfocitos NKT absolutos\\
+IgG & Niveles séricos IgG\\
+IgM & Niveles séricos IgM\\
+IgA & Niveles séricos IgA\\
+C3 & Niveles séricos C3\\
+C4 & Niveles séricos C4\\
+Pneut & \% de neutrófilos\\
+Plinf & \% de linfocitos\\
+Pmonoc & \% de monocitos\\
+Peos & \% de eosinófilos\\
+Pbas & \% de basófilos\\
+AbsNeut & Neutrófilos absolutos\\
+AbsLinf & Linfocitos absolutos\\
+AbsMonoc & Monocitos absolutos\\
+AbsEos & Eosinófilos absolutos\\
+AbsBas & Basófilos absolutos\\
+TH1 & \% de Linfocitos TH1\\
+TH117 & \% de Linfocitos TH1/TH17\\
+TH17 & \% de Linfocitos TH17\\
+TH2 & \% de Linfocitos TH2\\
+TC1 & \% de Linfocitos Tc1\\
+TC117 & \% de linfocitos Tc1/Tc17\\
+TC17 & \% de linfocitos Tc17\\
+TC2 & \% de linfocitos Tc2\\
+THMEM & \% de linfocitos Thelper memoria\\
+THMEM1 & \% de Linfocitos TH1 memoria\\
+THMEM117 & \% de Linfocitos TH1/TH17 memoria\\
+THMEM17 & \% de Linfocitos TH17 memoria\\
+THMEM2 & \% de Linfocitos TH2 memoria\\
+TCMEM & \% de Linfocitos Tc memoria\\
+TCMEM1 & \% de Linfocitos Tc1 memoria\\
+TCMEM117 & \% de linfocitos Tc1/Tc17 memoria\\
+TCMEM17 & \% de linfocitos Tc17 memoria\\
+TCMEM2 & \% de linfocitos Tc2 memoria\\
+LBCXCR5 & \% de LB CXCR5\\
+LBCXCR5PD1 & \% de LB CXCR5 PD1\\
+LTCXCR5 & Linfocitos T CXCR5\\
+LTCXCR5PD1 & Linfocitos T CXCR5 PD1\\
+MoClasicos & \% de Monocitos clásicos\\
+MoIntermedios & \% de Monocitos intermedios\\
+MoNOclasicos & \% de Monocitos no clásicos\\
+PNK56high16lo & \% de linfocitos NK CD56high CD16low\\
+PNK5616high & \% de linfocitos NK CD56CD16high (citotóxicos)\\
+CTL27p28p & \% de LT citotóxicos $CD27^{+}CD28^{+}$\\
+CTL27n28p & \% de LT citotóxicos $CD27^{-}CD28^{+}$\\
+CTL27p28n & \% de LT citotóxicos $CD27^{+}CD28^{-}$\\
+CTL27n28n & \% de LT citotóxicos $CD27^{-}CD28^{-}$\\
+TH27p28p & \% de LT helper $CD27^{+}CD28^{+}$\\
+TH27n28p & \% de LT helper $CD27^{-}CD28^{+}$\\
+TH27p28n & \% de LT helper $CD27^{+}CD28^{-}$\\
+TH27n28n & \% de LT helper $CD27^{-}CD28^{-}$\\
+CTLDRn38n & \% de LT citotóxicos $HLADR^{-}CD38^{-}$\\
+CTLDRp38n & \% de LT citotóxicos $HLADR^{+}CD38^{-}$\\
+CTLDRn38p & \% de LT citotóxicos $HLADR^{-}CD38^{+}$\\
+CTLDRp38p & \% de LT citotóxicos $HLADR^{+}CD38^{+}$\\
+THDRn38n & \% de LT helper $HLADR^{-}CD38^{-}$\\
+THDRp38n & \% de LT helper $HLADR^{+}CD38^{-}$\\
+THDRn38p & \% de LT helper $HLADR^{-}CD38^{+}$\\
+THDRp38 & \% de LT helper $HLADR^{+}CD38^{+}$\\
+}
+
+\subsection{Variable a predecir}
+
+La variable a predecir para desarrollar los modelos es el \textbf{score} de evolución clínica atendiendo a la gravedad de la enfermedad en el paciente y distinguiendo en \textit{leve} si el paciente es leve y \textit{moderado/grave} en el caso que el paciente tuviese que recibir una asistencia hospitalaria con ventilación mecánica.
+
+Atendiendo a esta distinción, se observa que el conjunto de datos está bastante balanceado con 73 pacientes leves y 82 moderados/graves.
+
+\section{Réplica del trabajo original}
+
+Como primer acercamiento, se realizó un cuaderno jupyter en python para replicar el trabajo original \textit{Innate and Adaptive Immune Assessment at Admission to Predict Clinical Outcome in COVID-19 Patients}\cite{sansegundo:2021}: un modelo de regresión logística basada sólo en 7 variables de las recogidas en la cohorte de datos: age, ferritin, d-dimer, absolute lymphocite count, C4, \% de $CD8^{+}CD27^{-}CD28^{-}$ y \%  of non-classical monocytes.
+
+Primero se preparó el dataset para coincidir con los datos que se utilizan en el trabajo original, ya que se toman muestras de pacientes entre Abril y Octubre de 2020 y que hayan resultado positivos en una prueba PCR.
+
+Una vez tenemos los datos preparados, comprobamos en la figura \ref{fig:valoresnulos} que existen valores nulos en alguna de las variables, por lo que necesitaremos realizar una imputación de esos datos nulos; siguiendo las directrices que marca el trabajo, haremos una imputación de la media.
+
+\imagen{valoresnulos}{Valores nulos en el dataset}
+
+Se ha utilizado la validación cruzada con la biblioteca StratifiedKFold varias veces, cada vez con una semilla distinta, de forma que el resultado buscado (AUC ROC) es una media de todos los resultados de cada una de las repeticiones que se realizaron. Se han utilizado 5 repeticiones y 3 folds y 10 repeticiones y 10 folds, respectivamente.
+
+En nuestro caso, el mejor resultado obtenido fue con la imputación de la media y 5 repeticiones y 3 folds, con lo que obtuvimos un AUC ROC de \textbf{76,36\%}.
+
+Entendemos que la desviación obtenida con el resultado del trabajo original (78\%) viene dada por el hecho de haber utilizado la validación cruzada en nuestra réplica.
+
+El cuaderno \textit{Réplica trabajo} se encuentra en el repositorio del trabajo en Github: \href{https://github.com/sgg0008/ml-COVID-19/tree/main/2. Cuadernos TFG}{2. Cuadernos TFG}
+
+\section{Búsqueda del clasificador óptimo con Autosklearn}
+
+En la búsqueda de un clasificador óptimo para la cohorte de datos, se ha utilizado la biblioteca de python \textit{Autosklearn} que es una biblioteca de aprendizaje automático (AutoML) que permite automatizar el proceso de construcción de modelos de aprendizaje automático. En la figura \ref{fig:autosklearn} se puede observar su funcionamiento.
+
+\imagen{autosklearn}{Autosklearn en una imagen \cite{autosklearn-img:2020}}
+
+Para llevar una correlación con la réplica del apartado anterior, se han tenido en cuenta dos factores a la hora de realizar los cuadernos:
+
+\begin{itemize}
+    \item Utilizar sólo las características de la réplica o todas las características.
+    \item Hacer validación cruzada de 5 o 10 repeticiones con \textit{StratifiedKFold}.
+\end{itemize}
+
+A partir de esta información, se crearon cuatro cuadernos jupyter con la misma estructura, pero alternando los factores anteriores.
+
+La preparación de los datos es similar al cuaderno de réplica de datos, tan solo varía en el caso de escoger todas las variables.
+
+Una vez creados los dataframes de entrenamiento (X) y de test (y), se convierten los datos a un formato compatible con autosklearn y se dividen en subconjuntos aleatorios con la función de sklearn \textit{train\_test\_split} con un test\_size de 0.3.
+
+A continuación, se configuraaron los modelos de automl para que realicen una búsqueda del mejor clasificador e hiperparámetros en un tiempo de 1 hora, limitando el tiempo por clasificador en 80 segundos, aplicando una estrategia de resampleado con StratifiedKFold (alternando los splits en 5 y 10 repeticiones) utilizando 4 procesos paralelos y estableciendo como métrica de búsqueda el AUC ROC.
+
+El límite de tiempo ocupado por clasificador de 80 segundos, se estableció atendiendo a las diversas pruebas que se realizaron con autosklearn con anterioridad, observando en los resultados el número de algortimos pérdidos por tiempo.
+
+Estos fueron los resultados obtenidos en los 4 cuadernos:
+
+\begin{enumerate}
+    \item Con características de la réplica:
+    \begin{itemize}
+        \item 10 repeticiones: \ref{fig:repliauto10}
+        \begin{description}
+            \item[Clasificador:] Passive\_agressive
+            \item[AUC ROC:] 82,25\%
+        \end{description}
+        \imagen{repliauto10}{Resultado experimento réplica con 10 repeticiones}
+        \item 5 repeticiones: \ref{fig:repliauto5}
+        \begin{description}
+            \item[Clasificador:] Extra\_trees
+            \item[AUC ROC:] 79,83\%
+        \end{description}
+        \imagen{repliauto5}{Resultado experimento réplica con 5 repeticiones}
+    \end{itemize}
+    \item Todas las características:
+    \begin{itemize}
+        \item 10 repeticiones: \ref{fig:todoauto10}
+        \begin{description}
+            \item[Clasificador:] Gradient\_boosting
+            \item[AUC ROC:] 82,07\%
+        \end{description}
+        \imagen{todoauto10}{Resultado experimento con todas las caract. y 10 repeticiones}
+        \item 5 repeticiones: \ref{fig:todoauto5}
+        \begin{description}
+            \item[Clasificador:] Lda
+            \item[AUC ROC:] 83,78\%
+        \end{description}
+        \imagen{todoauto5}{Resultado experimento con todas las caract. y 5 repeticiones}
+    \end{itemize}
+\end{enumerate}
+
+Una vez reajustado el modelo, se utilizó la biblioteca \textit{Pipeline profiler} \ref{fig:pipeprofiler} para comparar los resultados obtenidos en cada experimento realizado. 
+
+\imagen{pipeprofiler}{Pipeline profiler experimento con todas las caract. y 5 repeticiones}
+
+Los cuadernos de \textit{Autosklearn} se encuentran en el repositorio del trabajo en Github: \href{https://github.com/sgg0008/ml-COVID-19/tree/main/2. Cuadernos TFG}{2. Cuadernos TFG}
+
+\section{Optimización de hiperparámetros}
+
+En este apartado, se utiliza la biblioteca Optuna para realizar la optimización de hiperparámetros del modelo LDA (Análisis de Discriminante Lineal). Se define la función objetivo que toma los hiperparámetros sugeridos por Optuna y entrena el modelo en el conjunto de entrenamiento, luego se evalúa su rendimiento en el conjunto de prueba. Optuna realiza la búsqueda de hiperparámetros y guarda los mejores hiperparámetros encontrados.
+
+Además, se utiliza la biblioteca Shap para realizar una exploración de importancia de características del modelo entrenado \ref{fig:shap}. Se crea un objeto Explainer con el mejor modelo y se calculan los valores SHAP para el conjunto de prueba. Finalmente, se visualiza la importancia
+
+\imagen{shap}{Contribución media de las características de cada clase}
+
+Los cuadernos de \textit{Optimización de hiperparámetros} se encuentran en el repositorio del trabajo en Github: \href{https://github.com/sgg0008/ml-COVID-19/tree/main/2. Cuadernos TFG}{2. Cuadernos TFG}
